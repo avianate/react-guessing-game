@@ -5,6 +5,7 @@ import ButtonGroup from "./components/ButtonGroup";
 import Button from "./components/Button";
 import GuessForm from "./components/GuessForm";
 import Result from "./components/Result";
+import styled from "styled-components";
 
 // Game Type
 export const GAMETYPE = {
@@ -20,6 +21,11 @@ const defaultState = {
     message: "",
     isGameOver: false,
 };
+
+const Container = styled.div`
+    background : linear-gradient(90deg, rgba(226,239,255,1) 0%, rgba(255,225,247,1) 50%, rgba(205,255,208,1) 100%);
+    padding: 25px;
+`;
 
 // The game application
 class App extends Component {
@@ -180,19 +186,26 @@ class App extends Component {
         const {message, isGameOver, guess, gameType} = this.state;
 
         return (
-            <div className="App">
+            <Container className="App">
+                
                 <ButtonGroup 
                     activeButton={gameType}
                     easyAction={this.easyGame} 
                     mediumAction={this.mediumGame} 
                     hardAction={this.hardGame} 
                 />
-                <GuessForm guess={guess} onGuess={this.handleGuess} updateGuess={this.updateGuess} />
+
+                <GuessForm 
+                    guess={guess} 
+                    onGuess={this.handleGuess} 
+                    updateGuess={this.updateGuess} />
+
                 <Result message={message} />
                 {
                     isGameOver && <Button text="New Game" action={this.newGame} />
                 }
-            </div>
+
+            </Container>
         );
     }
 }
