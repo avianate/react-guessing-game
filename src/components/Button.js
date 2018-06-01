@@ -19,6 +19,11 @@ const StyledButton = styled.button`
         transform: translateY(-1px);
     }
 
+    &:focus {
+            box-shadow: 0 0 5px #7fadf9;
+            border: 3px solid #7fadf9;
+        }
+
     ${props => props.primary && css`
         color: #fff;
         font-size: 14px;

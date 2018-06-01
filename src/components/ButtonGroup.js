@@ -8,6 +8,8 @@ const StyledButtonGroup = styled.div`
     margin: 20px auto;
     width: 290px;
     border-radius: 4px;
+    border-color: #dfdfdf;
+    box-shadow: 0px 0px 0px 1px hsla(0, 0%, 0%, 0.1)
 `;
 
 const groupStyle = {
