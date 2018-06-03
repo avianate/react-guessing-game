@@ -15,6 +15,10 @@ const StyledInput = styled.input`
     padding: 5px 10px;;
 `;
 
+const Form = styled.div`
+    grid-area: input;
+`;
+
 class GuessForm extends Component {
     
     constructor(props) {
@@ -32,12 +36,12 @@ class GuessForm extends Component {
     render() {
         const {guess, maxNumber} = this.props;
         return (
-            <div>
+            <Form>
                 <StyledInput type="number" value={guess} onChange={this.props.updateGuess} onFocus={this.handleFocus} />
                 <div>
                     <Button primary={true} text="Guess" action={this.props.onGuess} />
                 </div>
-            </div>
+            </Form>
         );
     }
 }

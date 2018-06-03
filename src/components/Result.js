@@ -1,9 +1,14 @@
 import React from "react";
+import styled from "styled-components";
+
+const StyledResults = styled.div`
+    grid-area: results;
+`;
 
 const Result = ({message}) => (
-    <div>
+    <StyledResults>
         <h5>{message}</h5>
-    </div>
+    </StyledResults>
 );
 
 export default Result;

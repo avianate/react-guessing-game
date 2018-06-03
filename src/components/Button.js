@@ -37,18 +37,15 @@ const activeStyle = {
     backgroundColor: "#a9cdf9"
 };
 
-const Button = ({text, subtext, action, isActive, ...props}) => (
+const Button = ({className, text, subtext, action, isActive, ...props}) => (
     <StyledButton 
+        className={className}
         primary={props.primary}
         isActive={isActive}
         onClick={action}>
         {text}
         <div>{subtext}</div>
     </StyledButton>
-    // <button style={isActive ? activeStyle : null} onClick={action}>
-    //     {text}
-    //     <div>{subtext}</div>
-    // </button>
 );
 
 export default Button;

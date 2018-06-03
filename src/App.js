@@ -6,6 +6,7 @@ import Button from "./components/Button";
 import GuessForm from "./components/GuessForm";
 import Result from "./components/Result";
 import styled from "styled-components";
+import PreviousGuesses from "./components/PreviousGuesses";
 
 // Game Type
 export const GAMETYPE = {
@@ -20,11 +21,24 @@ const defaultState = {
     number: -1,
     message: "",
     isGameOver: false,
+    previousGuesses: []
 };
 
 const Container = styled.div`
     background : linear-gradient(90deg, rgba(226,239,255,1) 0%, rgba(255,225,247,1) 50%, rgba(205,255,208,1) 100%);
     padding: 25px;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas: "buttons sidebar"
+    "input sidebar"
+    "results sidebar"
+    "newGame sidebar";
+`;
+
+const NewGameButton = styled(Button)`
+    grid-area: newGame;
+    margin: 0 auto;
 `;
 
 // The game application
@@ -149,10 +163,12 @@ class App extends Component {
     }
 
     // Updates the local state's message property to the result string
+    // Since we update the result message after each guess, this function 
+    // will also add the guess to the previousGuesses property in state
     updateResultMessage() {
         const resultMessage = this.getResultMessage();
 
-        this.setState({...this.state, message: resultMessage});
+        this.setState({...this.state, message: resultMessage, previousGuesses: [...this.state.previousGuesses, this.state.guess]});
     }
 
     // Starts a new game
@@ -183,7 +199,7 @@ class App extends Component {
     }
 
     render() {
-        const {message, isGameOver, guess, gameType} = this.state;
+        const {message, isGameOver, guess, gameType, previousGuesses} = this.state;
 
         return (
             <Container className="App">
@@ -202,8 +218,10 @@ class App extends Component {
 
                 <Result message={message} />
                 {
-                    isGameOver && <Button text="New Game" action={this.newGame} />
+                    isGameOver && <NewGameButton text="New Game" action={this.newGame} />
                 }
+
+                <PreviousGuesses guesses={previousGuesses} />
 
             </Container>
         );

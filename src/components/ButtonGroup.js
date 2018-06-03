@@ -9,7 +9,8 @@ const StyledButtonGroup = styled.div`
     width: 290px;
     border-radius: 4px;
     border-color: #dfdfdf;
-    box-shadow: 0px 0px 0px 1px hsla(0, 0%, 0%, 0.1)
+    box-shadow: 0px 0px 0px 1px hsla(0, 0%, 0%, 0.1);
+    grid-area: buttons;
 `;
 
 const groupStyle = {
